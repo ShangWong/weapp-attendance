@@ -3,11 +3,12 @@
 var app = getApp()
 Page({
   data:{
+    userInfo: {},
     languages: ["简体中文", "English"], // "繁体中文", "日本語" may be supported in the future
     index: 0,                           // current default selected item
     UI: [ 
-      {title: "设置", language: "选择语言", currentLan: "当前选择", employeeIdTitle: "雇员编号", currentId: "如有疑问请联系人事部门", save: "保存"},
-      {title: "Settings", language: "Change Language", currentLan: "Current", employeeIdTitle: "Employee ID", currentId: "Contact HR Dept.", save: "Save Changes"}
+      {title: "设置", language: "选择语言", currentLan: "当前选择", employeeIdTitle: "雇员编号", currentId: "如有疑问请联系人事部门", employeeId: 'EMP10086RD', save: "保存"},
+      {title: "Settings", language: "Change Language", currentLan: "Current", employeeIdTitle: "Employee ID", currentId: "Contact HR Dept.", employeeId: 'EMP10086RD', save: "Save Changes"}
       ]
   },
   bindPickerChange: function(e) {
@@ -31,14 +32,26 @@ Page({
       index: selectedLanguage    
     })
   },
-  onReady:function(){
-    // 页面渲染完成
-  },
   onShow:function(){
     // 页面显示
+    var that = this
+    wx.getStorage({
+      key: 'userInfo',
+      success: function(res) {        
+        that.setData({
+          userInfo: res.data
+        })
+      }
+    })
   },
-  onHide:function(){
-    // 页面隐藏
+  toast:function(){
+    var selectedLanguage = app.globalData.settings.language;
+    var title = ["已保存", "Saved"][selectedLanguage];
+    wx.showToast({
+      title: title,
+      icon: "success",
+      duration: 1500
+    })
   },
   onUnload:function(){
     // 页面关闭

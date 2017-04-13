@@ -27,6 +27,12 @@ App({
             success: function (res) {
               that.globalData.userInfo = res.userInfo
               typeof cb == "function" && cb(that.globalData.userInfo)
+              console.log(res.userInfo)
+              //在LocalStorage中储存用户信息 
+              wx.setStorage({
+                key: 'userInfo',
+                data: res.userInfo
+              })
             }
           })
         }

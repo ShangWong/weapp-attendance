@@ -1,2 +1,34 @@
 <!--pages/timecard/normal/normal.wxml-->
-<text>pages/timecard/normal/normal.wxml</text>
+<import src="../../common/head.wxml" />
+<import src="../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: title}}"/>
+
+  <view class="display-container">
+    <text class="clock">{{displayTime}}</text>
+  </view>
+
+  <view class="page-body">
+    <view class="page-section">
+      <view class="weui-cells__title">打卡目的</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">当前选择</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindPickerChange" value="{{checkType[uindex][index]}}" range="{{checkType[uindex]}}">
+              <view class="weui-input">{{checkType[uindex][index]}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="btn-area" id="buttonContainer">
+      <button bindtap="toast" type="primary">提交</button>
+    </view>
+
+  </view>
+</view>

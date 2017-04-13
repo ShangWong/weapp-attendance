@@ -4,11 +4,16 @@
 <view class="container">
   <template is="head" data="{{title: UI[index].title}}"/>
 
+  <view  class="userinfo">
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{UI[uindex].greeting}}\n{{userInfo.nickName}}</text>
+  </view>
+
   <view class="page-section">
     <view class="weui-cells__title">{{UI[index].employeeIdTitle}}</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
-        <input class="weui-input" auto-focus placeholder="{{UI[index].employeeId}}"/>
+        <input class="weui-input" disabled auto-focus placeholder="{{UI[index].employeeId}}"/>
       </view>
     </view>
   </view>
@@ -31,7 +36,7 @@
     </view>
 
     <view class="btn-area" id="buttonContainer">
-      <button type="primary">{{UI[index].save}}</button>
+      <button bindtap="toast" type="primary">{{UI[index].save}}</button>
     </view>
   </view>    
   <template is="foot" />

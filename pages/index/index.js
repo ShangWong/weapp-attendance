@@ -28,15 +28,17 @@ Page({
           {path: "create", title: ["新建加班记录", "Create new record"]},
           {path: "list", title: ["查看加班记录", "Check record list"]}
           ]
+      }, {
+        id: 'sample',
+        name: ['示例菜单', 'Sample Menu'],
+        open: false,        
+        pages: [
+          {path: "sample", title: ["子菜单", "Sub-menu"]}
+          ]
       }
     ]
   },
   //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
   kindToggle: function (e) {        
     var id = e.currentTarget.id, list = this.data.list;
     for (var i = 0, len = list.length; i < len; ++i) {
