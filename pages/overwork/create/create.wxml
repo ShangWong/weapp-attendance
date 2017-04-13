@@ -1,0 +1,67 @@
+<import src="../../common/head.wxml" />
+<import src="../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: UI[uindex].title}}"/>
+
+    <view class="weui-cells__title">{{UI[uindex].datepicker}}</view>
+        <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+            <view class="weui-label">{{UI[uindex].current}}</view>
+            </view>
+            <view class="weui-cell__bd">
+            <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+                <view class="weui-input">{{date}}</view>
+            </picker>
+            </view>
+        </view>
+    </view>
+
+  <view class="page-body">
+    <view class="page-section">
+      <view class="weui-cells__title">{{UI[uindex].reasonpicker}}</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">{{UI[uindex].current}}</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindPickerChange" value="{{index}}" range="{{overworkReasons[uindex]}}">
+              <view class="weui-input">{{overworkReasons[uindex][index]}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-cells__title">{{UI[uindex].timepicker}}</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">{{UI[uindex].current}}</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+              <view class="weui-input">{{time}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-cells__title">{{UI[uindex].memo}}</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <!--<input class="weui-input" auto-focus placeholder="将会获取焦点"/>-->
+          <input class="weui-input" placeholder=""/>
+        </view>
+      </view>
+
+      <view class="btn-area" id="buttonContainer">
+        <button type="primary">{{UI[uindex].save}}</button>
+      </view>
+
+    </view>
+  </view>
+
+  <template is="foot" />
+</view>

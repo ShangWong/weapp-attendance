@@ -1,0 +1,38 @@
+<import src="../common/head.wxml" />
+<import src="../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: UI[index].title}}"/>
+
+  <view class="page-section">
+    <view class="weui-cells__title">{{UI[index].employeeIdTitle}}</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" auto-focus placeholder="{{UI[index].employeeId}}"/>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-body">
+    <view class="page-section">
+      <view class="weui-cells__title">{{UI[index].language}}</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">{{UI[index].currentLan}}</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindPickerChange" value="{{index}}" range="{{languages}}">
+              <view class="weui-input">{{languages[index]}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="btn-area" id="buttonContainer">
+      <button type="primary">{{UI[index].save}}</button>
+    </view>
+  </view>    
+  <template is="foot" />
+</view>

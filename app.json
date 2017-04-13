@@ -1,0 +1,44 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/settings/settings",
+    "pages/timecard/normal/normal",
+    "pages/overwork/create/create"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#006df0",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "iconPath": "image/icon_CSR.png",
+      "selectedIconPath": "image/icon_CSR_HL.png",
+      "text": "考勤"
+    }, {
+      "pagePath": "pages/logs/logs",
+      "iconPath": "image/icon_CWS.png",
+      "selectedIconPath": "image/icon_CWS_HL.png",
+      "text": "申请"
+    }, {
+      "pagePath": "pages/settings/settings",
+      "iconPath": "image/icon_settings.png",
+      "selectedIconPath": "image/icon_settings_HL.png",
+      "text": "设置"
+    }]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": false
+}

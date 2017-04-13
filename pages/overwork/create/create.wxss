@@ -1,0 +1,2 @@
+/* pages/overwork/create/create.wxss */
+@import "../../common/lib/weui.wxss";
