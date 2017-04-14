@@ -58,5 +58,7 @@ App({
 - 通过以下数据结构设计, 实现以不同语言的显示, 提交表单时为相同的id
 
 ```js
-  {id: "same id", msg: "multiple language msg"}
+  [                                                   // Language
+    {id: "same id", msg: "multiple language msg"}     // Options of current language
+  ]
 ``` 
