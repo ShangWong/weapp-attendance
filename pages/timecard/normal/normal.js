@@ -10,7 +10,12 @@ Page({
     uindex: null,
     index: 0,
     title: null,
-    checkType: [["上班", "下班"], ["Clock in", "Clock out"]],
+    // checkType: [["上班", "下班"], ["Clock in", "Clock out"]],
+    checkType: [
+      [{id: "clockIn", msg: "上班"}, {id: "clockOut", msg: "下班"}],
+      [{id: "clockIn", msg: "Clock In"}, {id: "clockOut", msg: "Clock Out"}]
+    ],  
+    checkMode: {},
     locName: 'Status',
     locDesc: 'Waiting for locating...',
     loading: false,
@@ -59,8 +64,9 @@ Page({
     var toastTitle = ['定位成功', 'Got Location'][selectedLanguage];
     var that = this;
     var ui = that.data.UI
-    var myAmapFun = new amapFile.AMapWX({key:'8ebbe699d71eed6674889848604e411a'});
-    myAmapFun.getRegeo({      
+    var amap = new amapFile.AMapWX({key:'8ebbe699d71eed6674889848604e411a'});
+    
+    amap.getRegeo({      
       success: function(data){
         console.log(data)
         //成功回调
@@ -84,5 +90,21 @@ Page({
         // }})      
       }
     })
+    
+  },
+  formSubmit: function(e){
+    console.log(e.detail.value)
+    wx.showModal({
+      title: '打卡',
+      content: e.detail.value.type + '\n' + e.detail.value.name + '\n' + e.detail.value.address,
+      success: function(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+
   }
 })

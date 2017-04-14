@@ -15,9 +15,9 @@ Page({
       {title: "Create new record", current: "Current", datepicker: "Choose date", timepicker: "Choose overwork time", reasonpicker: "Reason", memo: "Memo",save: "Save"}
     ],
     overworkReasons: [
-      ["无特殊理由","客户紧急情况","项目延迟"], 
-      ["No special reason", "Customer Situation", "Project Delay"]      
-      ]
+      [{id:"default", msg: "无特殊理由"}, {id: "customer", msg: "客户紧急情况"}, {id: "projectDelay", msg: "项目延迟"}],
+      [{id:"default", msg: "No special reason"}, {id: "customer", msg: "Customer Situation"}, {id: "projectDelay", msg: "Project Delay"}]
+    ]
     },
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数

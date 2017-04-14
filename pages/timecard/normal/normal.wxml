@@ -10,6 +10,7 @@
   </view>
 
   <view class="page-body">
+    <form catchsubmit="formSubmit" catchreset="formReset">
     <view class="page-section">
       <view class="weui-cells__title">{{UI[uindex].checkType}}</view>
       <view class="weui-cells weui-cells_after-title">
@@ -18,9 +19,11 @@
             <view class="weui-label">{{UI[uindex].current}}</view>
           </view>
           <view class="weui-cell__bd">
-            <picker bindchange="bindPickerChange" value="{{checkType[uindex][index]}}" range="{{checkType[uindex]}}">
-              <view class="weui-input">{{checkType[uindex][index]}}</view>
+            
+            <picker name="type" bindchange="bindPickerChange" value="{{checkType[uindex][index].id}}" range="{{checkType[uindex]}}" range-key="msg">
+              <view class="weui-input">{{checkType[uindex][index].msg}}</view>
             </picker>
+
           </view>
         </view>
       </view>
@@ -33,7 +36,7 @@
             <view class="weui-label">{{UI[uindex].locName}}</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" type="text" disabled="{{true}}"  value="{{UI[uindex].locNameContent}}" name="name"></input>
+            <input class="weui-input" type="text" disabled="{{true}}" name="locName" value="{{UI[uindex].locNameContent}}" name="name"></input>
           </view>
         </view>
         <view class="weui-cell weui-cell_input">
@@ -41,7 +44,7 @@
             <view class="weui-label">{{UI[uindex].locDesc}}</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" type="text" disabled="{{true}}"  value="{{UI[uindex].locDescContent}}" name="address"></input>
+            <input class="weui-input" type="text" disabled="{{true}}" name="locDesc" value="{{UI[uindex].locDescContent}}" name="address"></input>
           </view>
         </view>
 
@@ -53,8 +56,8 @@
     </view>
 
     <view class="btn-area" id="buttonContainer">
-      <button bindtap="toast" type="primary">{{UI[uindex].submitButton}}</button>
+      <button formType="submit" type="primary">{{UI[uindex].submitButton}}</button>
     </view>
-
+  </form>
   </view>
 </view>

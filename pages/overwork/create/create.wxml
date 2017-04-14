@@ -27,8 +27,8 @@
             <view class="weui-label">{{UI[uindex].current}}</view>
           </view>
           <view class="weui-cell__bd">
-            <picker name="reason" bindchange="bindPickerChange" value="{{overworkReasons[uindex][index]}}" range="{{overworkReasons[uindex]}}">
-              <view class="weui-input">{{overworkReasons[uindex][index]}}</view>
+            <picker name="reason" bindchange="bindPickerChange" value="{{overworkReasons[uindex][index].id}}" range="{{overworkReasons[uindex]}}" range-key="msg">
+              <view class="weui-input">{{overworkReasons[uindex][index].msg}}</view>
             </picker>
           </view>
         </view>
@@ -48,11 +48,11 @@
         </view>
       </view>
 
-      <view class="page-section-title">{{UI[uindex].memo}}</view>
+      
+      <view class="weui-cells__title">{{UI[uindex].memo}}</view>
       <view class="textarea-wrp">
         <textarea name="memo" bindblur="bindTextAreaBlur" auto-height />
-      </view>
-    
+      </view>      
 
       <view class="btn-area">
         <button type="primary" formType="submit">{{UI[uindex].save}}</button>
@@ -63,5 +63,5 @@
     </view>
     </view>
   </form>
-  <template is="foot" />
+  <!--<template is="foot" />-->
 </view>
