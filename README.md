@@ -46,3 +46,17 @@ App({
     ,[......]                                                                    // Other possible languages
   ]
 ```
+
+- 当 range 是一个 Object Array 时，通过 range-key 来指定 Object 中 key 的值作为选择器显示内容
+
+```html
+  <picker value="{{checkType[uindex][index].id}}" range="{{checkType[uindex]}}" range-key="msg">
+    <view class="weui-input">{{checkType[uindex][index].msg}}</view>
+  </picker>
+```
+- 注意picker的 _value属性_ 为 ```{{checkType[uindex][index].id}}```
+- 通过以下数据结构设计, 实现以不同语言的显示, 提交表单时为相同的id
+
+```js
+  {id: "same id", msg: "multiple language msg"}
+``` 
