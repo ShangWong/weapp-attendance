@@ -1,3 +1,4 @@
+// 返回日期时间 YYYY-MM-DD HH:mm:ss
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -11,11 +12,12 @@ function formatTime(date) {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+// 返回当前日期 YYYY-MM-DD
 function formatDateForPicker(date, flag) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
   var day = date.getDate()
-
+  // start -> 月初 / end -> 下月初 / else -> 当前日期
   if(flag === 'start'){
     return [year, month, 1].map(formatNumber).join('-')
   }else if(flag === 'end'){
@@ -25,6 +27,7 @@ function formatDateForPicker(date, flag) {
   }
 }
 
+// 返回当前时间 HH:mm:ss
 function currentTime(){
   var date = new Date(Date.now());
 

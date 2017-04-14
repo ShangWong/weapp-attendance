@@ -2,6 +2,7 @@
 //获取应用实例
 var app = getApp()
 var util = require('../../../utils/util.js')
+var amapFile = require('../../../utils/amap-wx.js');
 
 Page({
   data:{
@@ -9,7 +10,14 @@ Page({
     uindex: null,
     index: 0,
     title: null,
-    checkType: [["上班", "下班"], ["Clock in", "Clock out"]]
+    checkType: [["上班", "下班"], ["Clock in", "Clock out"]],
+    locName: 'Status',
+    locDesc: 'Waiting for locating...',
+    loading: false,
+    UI: [
+      {checkType: "打卡目的", current: "当前选择", locName: "位置名称", locDesc: "详细位置", locNameContent: "等待获取", locDescContent: "等待获取", locButton: "获取定位", submitButton: "提交"},
+      {checkType: "Type", current: "Current", locName: "Location", locDesc: "Detail", locNameContent: "Waiting", locDescContent: "Waiting", locButton: "Get Location", submitButton: "Submit"}
+      ]
   },
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
@@ -43,7 +51,38 @@ Page({
       index: e.detail.value
     })
   },
-  onUnload:function(){
-    // 页面关闭
+  relocate: function(){
+    this.setData({      
+      loading: true
+    })
+    var selectedLanguage = app.globalData.settings.language;
+    var toastTitle = ['定位成功', 'Got Location'][selectedLanguage];
+    var that = this;
+    var ui = that.data.UI
+    var myAmapFun = new amapFile.AMapWX({key:'8ebbe699d71eed6674889848604e411a'});
+    myAmapFun.getRegeo({      
+      success: function(data){
+        console.log(data)
+        //成功回调
+        wx.showToast({
+          title: toastTitle,
+          icon: 'success',
+          duration: 1000
+        })
+        // 改写UI，反映在视图层
+        ui[selectedLanguage].locNameContent =  data[0].name
+        ui[selectedLanguage].locDescContent =  data[0].desc
+        that.setData({
+          UI: ui,
+          loading: false      
+        })  
+        // wx.setStorage({
+        // key: 'loc',
+        // data: data[0],
+        // success: function(res){
+        //   // success
+        // }})      
+      }
+    })
   }
 })
