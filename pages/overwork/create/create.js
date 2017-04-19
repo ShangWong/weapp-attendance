@@ -12,11 +12,13 @@ Page({
     time: '01:30',
     UI: [
       {title: "新建", current: "当前选择", datepicker: "加班日期", timepicker: "加班时长", reasonpicker: "加班理由", memo: "备注", save: "保存"},
-      {title: "Create new record", current: "Current", datepicker: "Choose date", timepicker: "Choose overwork time", reasonpicker: "Reason", memo: "Memo",save: "Save"}
+      {title: "Create new record", current: "Current", datepicker: "Choose date", timepicker: "Choose overwork time", reasonpicker: "Reason", memo: "Memo",save: "Save"},
+      {title: "新規", current: "選択項目", datepicker: "残業日", timepicker: "残業時間", reasonpicker: "残業理由", memo: "メモ", save: "保存"}
     ],
     overworkReasons: [
       [{id:"default", msg: "无特殊理由"}, {id: "customer", msg: "客户紧急情况"}, {id: "projectDelay", msg: "项目延迟"}],
-      [{id:"default", msg: "No special reason"}, {id: "customer", msg: "Customer Situation"}, {id: "projectDelay", msg: "Project Delay"}]
+      [{id:"default", msg: "No special reason"}, {id: "customer", msg: "Customer Situation"}, {id: "projectDelay", msg: "Project Delay"}],
+      [{id:"default", msg: "理由なし"}, {id: "customer", msg: "お客様事情"}, {id: "projectDelay", msg: "納期遅れ"}],
     ]
     },
   onLoad:function(options){
@@ -38,7 +40,7 @@ Page({
     // 页面显示
     // 设置app语言的全局变量  
     var selectedLanguage = app.globalData.settings.language;
-    var reason = ["无加班理由", "Reason of overwork"][selectedLanguage];
+    var reason = ["无加班理由", "Reason of overwork", "理由なし"][selectedLanguage];
     console.log(reason);
     console.log('Current Language:' + selectedLanguage + ' (0: ZH-ch 1: ENG)');
     this.setData({

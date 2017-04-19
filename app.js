@@ -9,6 +9,13 @@ App({
       //使用系统语言设定 user-info COUNTRY, 暂时默认为中文 
       this.globalData.settings.language = 0; 
     }
+    //检查EMP ID设置
+    var emp = wx.getStorageSync('employeeId')
+    if(emp){
+      this.globalData.settings.employeeId = emp
+    }else{
+      this.globalData.settings.employeeId = null
+    }
 
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
@@ -41,7 +48,8 @@ App({
   },
   globalData:{
     settings:{
-      language: null
+      language: null,
+      employeeId: null
     },
     userInfo:null
   }

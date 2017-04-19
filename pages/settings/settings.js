@@ -4,11 +4,14 @@ var app = getApp()
 Page({
   data:{
     userInfo: {},
-    languages: ["简体中文", "English"], // "繁体中文", "日本語" may be supported in the future
-    index: 0,                           // current default selected item
+    employeeId: '',
+    inputStatus: false,
+    languages: ["简体中文", "English", "日本語"], // "繁体中文", "日本語" may be supported in the future
+    index: 0,                                    // current default selected item
     UI: [ 
       {title: "设置", language: "选择语言", currentLan: "当前选择", employeeIdTitle: "雇员编号", currentId: "如有疑问请联系人事部门", employeeId: 'EMP10086RD', save: "保存"},
-      {title: "Settings", language: "Change Language", currentLan: "Current", employeeIdTitle: "Employee ID", currentId: "Contact HR Dept.", employeeId: 'EMP10086RD', save: "Save Changes"}
+      {title: "Settings", language: "Change Language", currentLan: "Current", employeeIdTitle: "Employee ID", currentId: "Contact HR Dept.", employeeId: 'EMP10086RD', save: "Save Changes"},
+      {title: "設定", language: "言語変更", currentLan: "選択項目", employeeIdTitle: "社員番号", currentId: "人事部に連絡してください.", employeeId: 'EMP10086RD', save: "保存"}
       ]
   },
   bindPickerChange: function(e) {
@@ -28,8 +31,14 @@ Page({
   onLoad:function(options){
     // 设置app语言的全局变量
     var selectedLanguage = app.globalData.settings.language;
+    var employeeId = app.globalData.settings.employeeId;
+    if(employeeId !== null){
+      status = true 
+    }
     this.setData({      
-      index: selectedLanguage    
+      index: selectedLanguage,
+      employeeId: employeeId,
+      inputStatus: status    
     })
   },
   onShow:function(){
@@ -42,15 +51,29 @@ Page({
           userInfo: res.data
         })
       }
+
+
     })
   },
-  toast:function(){
+  bindKeyInput: function (e) {
+    this.setData({
+      employeeId: e.detail.value
+    })
+  },
+  save:function(){
     var selectedLanguage = app.globalData.settings.language;
-    var title = ["已保存", "Saved"][selectedLanguage];
-    wx.showToast({
+    var title = ["已保存", "Saved", "保存完了"][selectedLanguage];
+    wx.setStorageSync('employeeId', this.data.employeeId);
+    app.globalData.settings.employeeId = this.data.employeeId;
+    wx.showToast({      
       title: title,
       icon: "success",
       duration: 1500
+    })
+    // 更新视图
+    this.setData({
+      inputStatus: true,
+      employeeId: this.data.employeeId
     })
   },
   onUnload:function(){

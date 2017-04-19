@@ -3,37 +3,37 @@
 var app = getApp()
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     uindex: null,
     UI: [
       {greeting: "欢迎回来!"}, // Chinese UI
-      {greeting: "Welcome back!"}  // English UI
+      {greeting: "Welcome back!"},  // English UI
+      {greeting: "お帰りなさい!"}
     ],
     list: [
       {
         id: 'timecard',
-        name: ['打卡', 'Time Card'],
+        name: ['打卡', 'Time Card', '打刻'],
         open: false,        
         pages: [
-          {path: "normal", title: ["正常出勤", "Normal Checkin"]},
-          {path: "go_direct", title: ["直行申请", "Go directly"]},
-          {path: "return_direct", title: ["直归申请", "Return directly"]}
+          {path: "normal", title: ["正常出勤", "Normal Checkin", '通常出勤']},
+          {path: "go_direct", title: ["直行申请", "Go directly", "開発中"]},
+          {path: "return_direct", title: ["直归申请", "Return directly", "開発中"]}
           ]
       }, {
         id: 'overwork',
-        name: ['加班记录', 'Overwork Record'],
+        name: ['加班记录', 'Overwork Record', "残業申請"],
         open: false,        
         pages: [
-          {path: "create", title: ["新建加班记录", "Create new record"]},
-          {path: "list", title: ["查看加班记录", "Check record list"]}
+          {path: "create", title: ["新建加班记录", "Create new record", "新規"]},
+          {path: "list", title: ["查看加班记录", "Check record list", "開発中"]}
           ]
       }, {
         id: 'sample',
-        name: ['示例菜单', 'Sample Menu'],
+        name: ['示例菜单', 'Sample Menu', "サンプルメニュー"],
         open: false,        
         pages: [
-          {path: "sample", title: ["子菜单", "Sub-menu"]}
+          {path: "sample", title: ["子菜单", "Sub-menu", "サブメニュー"]}
           ]
       }
     ]
