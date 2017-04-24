@@ -4,6 +4,9 @@ var app = getApp()
 var util = require('../../../utils/util.js')
 var amapFile = require('../../../utils/amap-wx.js');
 
+const AV = require('../../../utils/av-weapp-min');
+const Check = require('../../../model/check')
+
 Page({
   data:{
     displayTime: null,
@@ -116,17 +119,26 @@ Page({
   },
   formSubmit: function(e){
     console.log(e.detail.value)
-    wx.showModal({
-      title: '打卡',
-      content: e.detail.value.type + '\n' + e.detail.value.name + '\n' + e.detail.value.address,
-      success: function(res) {
-        if (res.confirm) {
-          console.log(app.globalData.settings.employeeId)
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
+    // store the check
+    new Check({
+      checkType: e.detail.value.type,
+      location: e.detail.value.name
+    }).save(); 
+    
+    
+    // wx.showModal({
+    //   title: '打卡',
+    //   content: e.detail.value.type + '\n' + e.detail.value.name + '\n' + e.detail.value.address,
+    //   success: function(res) {
+    //     if (res.confirm) {
+    //       console.log(app.globalData.settings.employeeId)
+    //     } else if (res.cancel) {
+    //       console.log('用户点击取消')
+    //     }
+    //   }
+    // })
+
+
 
   }
 })

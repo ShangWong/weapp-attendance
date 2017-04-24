@@ -2,9 +2,11 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
+    "pages/user/user",
     "pages/settings/settings",
     "pages/timecard/normal/normal",
-    "pages/overwork/create/create"
+    "pages/overwork/create/create"   
+
   ],
   "window":{
     "backgroundTextStyle":"light",

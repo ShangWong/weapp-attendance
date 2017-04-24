@@ -10,17 +10,20 @@
   </view>
 
   <view class="page-section">
+    <navigator url="../user/user" class="navigator user">账户登录</navigator>
+  </view>
+
+  <!--<view class="page-section">
     <view class="weui-cells__title">{{UI[index].employeeIdTitle}}</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
-        <!--<input class="weui-input" disabled auto-focus placeholder="{{UI[index].employeeId}}"/>-->
         <input wx:if="{{!inputStatus}}" class="weui-input" bindinput="bindKeyInput" auto-focus placeholder="{{employeeId}}"/>
         <text wx:if="{{inputStatus}}" class="weui-input" style="color:#006df0"> {{employeeId}} </text>
       </view>
     </view>
-  </view>
+  </view>-->
 
-  <view class="page-body">
+  <!--<view class="page-body">-->
     <view class="page-section">
       <view class="weui-cells__title">{{UI[index].language}}</view>
       <view class="weui-cells weui-cells_after-title">
@@ -35,7 +38,7 @@
           </view>
         </view>
       </view>
-    </view>
+    <!--</view>-->
 
     <view class="btn-area" id="buttonContainer">
       <button bindtap="save" type="primary">{{UI[index].save}}</button>

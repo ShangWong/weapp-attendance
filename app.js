@@ -1,4 +1,13 @@
 //app.js
+const AV = require('./utils/av-weapp-min.js')
+
+// LeanCloud 应用的 ID 和 Key
+AV.init({ 
+ appId: 'z9dWOxquTBh7kIH0BGXlHjEa-gzGzoHsz', 
+ appKey: 'wA3sIlhOWzVHQubxmJyK2Ef8', 
+});
+
+console.log(AV)
 App({
   onLaunch: function () {
     //进入应用时检查语言设置
