@@ -118,12 +118,25 @@ Page({
     
   },
   formSubmit: function(e){
-    console.log(e.detail.value)
+    var currentTime = new Date();
     // store the check
     new Check({
+      timestamp: currentTime,
       checkType: e.detail.value.type,
-      location: e.detail.value.name
-    }).save(); 
+      location: e.detail.value.name,
+      address: e.detail.value.address
+    }).save().then(wx.navigateTo({
+      url: '../history/history',
+      success: function(res){
+        // success
+      },
+      fail: function(res) {
+        // fail
+      },
+      complete: function(res) {
+        // complete
+      }
+    })); 
     
     
     // wx.showModal({

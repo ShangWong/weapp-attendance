@@ -17,8 +17,7 @@ Page({
         open: false,        
         pages: [
           {path: "normal", title: ["正常出勤", "Normal Checkin", '通常出勤']},
-          {path: "go_direct", title: ["直行申请", "Go directly", "開発中"]},
-          {path: "return_direct", title: ["直归申请", "Return directly", "開発中"]}
+          {path: "history", title: ["打卡历史", "Check History", "打刻履歴"]}
           ]
       }, {
         id: 'overwork',

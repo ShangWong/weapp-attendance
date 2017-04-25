@@ -24,6 +24,14 @@ class Check extends AV.Object {
     set location(value){
         this.set('location', value)
     }
+
+    get address(){
+        return this.get('address')
+    }
+
+    set address(value){
+        this.set('address', value)
+    }
 }
 
 AV.Object.register(Check, 'Check');
