@@ -1,8 +1,19 @@
 // pages/user/user.js
+const AV = require('../../utils/av-weapp-min');
+const { User } = require('../../utils/av-weapp-min');
+
 Page({
-  data:{},
+  data:{
+    user: null,
+    employee: '',
+    username: '',
+    password: ''
+  },
   onLoad:function(options){
-    // 页面初始化 options为页面跳转所带来的参数
+    console.log(User.current())
+    this.setData({
+      user: User.current(),
+    });
   },
   onReady:function(){
     // 页面渲染完成
@@ -15,5 +26,30 @@ Page({
   },
   onUnload:function(){
     // 页面关闭
+  },
+  updateEmpid: function(e){
+    this.setData({
+      employee: e.detail.value
+    })
+  },
+  updatePassword: function(e){
+    this.setData({
+      password: e.detail.value
+    })
+  },
+  save: function(){
+    wx.showLoading({
+      title: '绑定中',
+    })
+
+    var usr = this.data.employee;
+    var psw = this.data.password;
+    AV.User.logIn(usr, psw).then(user => {
+    // 将当前的微信用户与当前登录用户关联
+    
+    user.linkWithWeapp().then(wx.hideLoading());
+    wx.navigateBack({delta: 1})
+    
+  }).catch(console.error);
   }
 })

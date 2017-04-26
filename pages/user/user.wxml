@@ -1,2 +1,34 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<import src="../common/head.wxml" />
+<import src="../common/foot.wxml" />
+<view class="container">
+    <template is="head" data="{{title: 'Bind'}}"/>
+
+    <!--<text wx:if="{{user !== null}}">You are logged in as, {{user.username}}</text>
+    <text wx:if="{{user == null}}">Please bind with your Employee ID</text>-->
+
+    <view class="page-section">
+        <view class="weui-cells__title">Employee ID</view>
+        <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+            <input wx:if="{{!inputStatus}}" class="weui-input" bindinput="updateEmpid" auto-focus placeholder="{{employeeId}}"/>
+            <text wx:if="{{inputStatus}}" class="weui-input" style="color:#006df0"> {{employeeId}} </text>
+        </view>
+        </view>
+
+        <view class="weui-cells__title">Password</view>
+        <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+            <input wx:if="{{!inputStatus}}" class="weui-input" bindinput="updatePassword" password placeholder="{{password}}"/>
+            <text wx:if="{{inputStatus}}" class="weui-input" style="color:#006df0"> {{employeeId}} </text>
+        </view>
+        </view>
+    </view>
+
+
+    <view class="btn-area" id="buttonContainer">
+        <!--<button class="submit" type="primary" disabled="{{!(username || password)}}" bindtap="save">绑定</button>-->
+        <button class="submit" type="primary" bindtap="save">绑定</button>
+    </view>
+    <template is="foot" data="{{title: 'Bind'}}"/>
+</view>

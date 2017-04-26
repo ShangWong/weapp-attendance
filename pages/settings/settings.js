@@ -1,8 +1,12 @@
 // pages/settings/settings.js
 //获取应用实例
+const AV = require('../../utils/av-weapp-min');
+const { User } = require('../../utils/av-weapp-min');
+
 var app = getApp()
 Page({
   data:{
+    user: null,
     userInfo: {},
     employeeId: '',
     inputStatus: false,
@@ -35,6 +39,8 @@ Page({
     if(employeeId !== null){
       status = true 
     }
+
+
     this.setData({      
       index: selectedLanguage,
       employeeId: employeeId,
@@ -48,11 +54,10 @@ Page({
       key: 'userInfo',
       success: function(res) {        
         that.setData({
+          user: User.current(),
           userInfo: res.data
         })
       }
-
-
     })
   },
   bindKeyInput: function (e) {
@@ -76,7 +81,24 @@ Page({
       employeeId: this.data.employeeId
     })
   },
-  onUnload:function(){
-    // 页面关闭
+  unbind:function(){
+    var that = this;
+    wx.showModal({
+      title: '解除账户绑定',
+      content: '我已知晓解除与COMPANY账户的绑定后，将导致部分功能不可用。',
+      success: function(res) {
+        if (res.confirm) {
+          console.log(AV.User.current());
+          AV.User.logOut().then(console.log('Log out'));
+          
+          console.log(AV.User.current());
+          that.setData({
+            user: AV.User.current()
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   }
 })

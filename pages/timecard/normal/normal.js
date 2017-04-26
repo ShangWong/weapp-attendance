@@ -118,40 +118,41 @@ Page({
     
   },
   formSubmit: function(e){
-    var currentTime = new Date();
-    // store the check
-    new Check({
-      timestamp: currentTime,
-      checkType: e.detail.value.type,
-      location: e.detail.value.name,
-      address: e.detail.value.address
-    }).save().then(wx.navigateTo({
-      url: '../history/history',
-      success: function(res){
-        // success
-      },
-      fail: function(res) {
-        // fail
-      },
-      complete: function(res) {
-        // complete
-      }
-    })); 
-    
-    
-    // wx.showModal({
-    //   title: '打卡',
-    //   content: e.detail.value.type + '\n' + e.detail.value.name + '\n' + e.detail.value.address,
-    //   success: function(res) {
-    //     if (res.confirm) {
-    //       console.log(app.globalData.settings.employeeId)
-    //     } else if (res.cancel) {
-    //       console.log('用户点击取消')
-    //     }
-    //   }
-    // })
+    if(AV.User.current() !== null){
+      // 有账户绑定时
+      var acl = new AV.ACL();
+      acl.setPublicReadAccess(false);
+      acl.setPublicWriteAccess(false);
+      acl.setReadAccess(AV.User.current(), true);
+      acl.setWriteAccess(AV.User.current(), true);
 
+      var currentTime = new Date();
+      // store the check
+      new Check({
+        timestamp: currentTime,
+        checkType: e.detail.value.type,
+        location: e.detail.value.name,
+        address: e.detail.value.address,
+        // user: AV.User.current()
+      }).setACL(acl).save().then(wx.navigateTo({
+        url: '../history/history'
+      })); 
 
+    }else{
+      // 无账户绑定
+      wx.showModal({
+        title: '当前无绑定账户',
+        content: '请绑定账户后，再进行考勤打卡',
+        showCancel: false,
+        success: function(res) {
+          if (res.confirm) {
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        }
+      })
+    }
 
   }
 })

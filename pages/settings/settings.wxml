@@ -6,25 +6,17 @@
 
   <view  class="userinfo">
       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{UI[uindex].greeting}}\n{{userInfo.nickName}}</text>
+      <!--<text class="userinfo-nickname">{{UI[uindex].greeting}}\n{{userInfo.nickName}}</text>-->
+      <text class="userinfo-nickname" wx:if="{{user !== null}}">You are logged in as, {{user.username}}</text>
+      <text class="userinfo-nickname" wx:if="{{user == null}}">Please bind with your Employee ID</text>
   </view>
 
   <view class="page-section">
-    <navigator url="../user/user" class="navigator user">账户登录</navigator>
-  </view>
+    
+    <view class="weui-cells__title">账户管理</view>
+    <navigator wx:if="{{user == null}}" url="../user/user" class="navigator user">账户绑定</navigator>
+    <navigator wx:if="{{user !== null}}" bindtap="unbind" class="navigator user">解除绑定</navigator>
 
-  <!--<view class="page-section">
-    <view class="weui-cells__title">{{UI[index].employeeIdTitle}}</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <input wx:if="{{!inputStatus}}" class="weui-input" bindinput="bindKeyInput" auto-focus placeholder="{{employeeId}}"/>
-        <text wx:if="{{inputStatus}}" class="weui-input" style="color:#006df0"> {{employeeId}} </text>
-      </view>
-    </view>
-  </view>-->
-
-  <!--<view class="page-body">-->
-    <view class="page-section">
       <view class="weui-cells__title">{{UI[index].language}}</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
