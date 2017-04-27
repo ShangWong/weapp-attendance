@@ -1,0 +1,20 @@
+<!--pages/timecard/history/history.wxml-->
+
+
+<scroll-view scroll-y="true">
+    <view wx:for="{{topics}}" wx:for-item="item" class="list-wrap">
+    <view bindtap="toDetail" class="list" data-sys-no="{{item.SysNo}}">
+        <image src="https:{{item.member.avatar_mini}}" class="rec-avatar"></image>
+        <view class="mid">
+        <view class="title">{{item.title}}</view>
+        <view class="discription">{{item.content}}</view>
+        <view class="detail">
+
+            <!--<text class="vertical">{{item.UsedCount}}</text>-->
+            <text class="radius">{{item.member.username}}</text>
+        </view>
+        </view>
+    </view>
+    <!--<image class="list-btn qr-little" src="../../images/qrcode_little.png" bindtap="openActionSheet" data-code="{{item.CodeImgPath}}"></image>-->
+    </view>
+</scroll-view>

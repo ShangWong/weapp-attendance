@@ -32,7 +32,7 @@ Page({
         name: ['示例菜单', 'Sample Menu', "サンプルメニュー"],
         open: false,        
         pages: [
-          {path: "sample", title: ["子菜单", "Sub-menu", "サブメニュー"]}
+          {path: "index", title: ["子菜单", "Sub-menu", "サブメニュー"]}
           ]
       }
     ]

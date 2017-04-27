@@ -42,6 +42,6 @@ Page({
     })
   },
   onReady:function(){
-    this.setChecks();
+    this.fetchChecks();
   }
 })

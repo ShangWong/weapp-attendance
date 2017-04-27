@@ -6,8 +6,8 @@
     "pages/settings/settings",
     "pages/timecard/normal/normal",
     "pages/timecard/history/history",
-    "pages/overwork/create/create"   
-
+    "pages/overwork/create/create",   
+    "pages/sample/index/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -26,7 +26,7 @@
       "selectedIconPath": "image/icon_CSR_HL.png",
       "text": "考勤"
     }, {
-      "pagePath": "pages/logs/logs",
+      "pagePath": "pages/sample/index/index",
       "iconPath": "image/icon_CWS.png",
       "selectedIconPath": "image/icon_CWS_HL.png",
       "text": "申请"
