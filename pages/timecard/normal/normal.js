@@ -9,19 +9,20 @@ const Check = require('../../../model/check')
 
 Page({
   data:{
+    latitude: 0,
+    longitude: 0,
     displayTime: null,
     uindex: null,
     index: 0,
     title: null,
-    // checkType: [["上班", "下班"], ["Clock in", "Clock out"]],
     checkType: [
       [{id: "clockIn", msg: "上班"}, {id: "clockOut", msg: "下班"}],
       [{id: "clockIn", msg: "Clock In"}, {id: "clockOut", msg: "Clock Out"}],
       [{id: "clockIn", msg: "出勤"}, {id: "clockOut", msg: "退勤"}],
       
-    ],  
-    checkMode: {},
+    ],      
     loading: false, // 更新地理位置加载状态
+    checkMode: {},
     UI: [
       {checkType: "打卡目的", current: "当前选择", locName: "位置名称", locDesc: "详细位置", locNameContent: "等待获取", locDescContent: "等待获取", locButton: "更新定位", submitButton: "提交"},
       {checkType: "Type", current: "Current", locName: "Location", locDesc: "Detail", locNameContent: "Waiting", locDescContent: "Waiting", locButton: "Update Location", submitButton: "Submit"},
@@ -36,12 +37,11 @@ Page({
     var selectedLanguage = app.globalData.settings.language;
     var toastTitle = ['定位成功', 'Got Location', '取得完了'][selectedLanguage];
     var that = this;
-    var ui = that.data.UI
+    var ui = that.data.UI;
     var amap = new amapFile.AMapWX({key:'8ebbe699d71eed6674889848604e411a'});
     
     amap.getRegeo({      
       success: function(data){
-        console.log(data)
         //成功回调
         wx.showToast({
           title: toastTitle,
@@ -49,11 +49,16 @@ Page({
           duration: 1000
         })
         // 改写UI，反映在视图层
+        console.log(data[0])
         ui[selectedLanguage].locNameContent =  data[0].name
         ui[selectedLanguage].locDescContent =  data[0].desc
+        var lat = data[0].latitude;
+        var lon = data[0].longitude; 
         that.setData({
-          UI: ui,
-          loading: false      
+          UI: ui,          
+          latitude: lat,
+          longitude: lon,
+          loading: false
         })  
       }
     })
@@ -111,13 +116,16 @@ Page({
         ui[selectedLanguage].locDescContent =  data[0].desc
         that.setData({
           UI: ui,
-          loading: false      
+          loading: false,
+          latitude: data[0].latitude,
+          longitude: data[0].longitude,           
         })  
       }
     })
     
   },
   formSubmit: function(e){
+    var that = this;
     if(AV.User.current() !== null){
       // 有账户绑定时
       var acl = new AV.ACL();
@@ -127,13 +135,18 @@ Page({
       acl.setWriteAccess(AV.User.current(), true);
 
       var currentTime = new Date();
+      console.log(that.data.latitude)
+      console.log(that.data.longitude)
+      var currentLocation = new AV.GeoPoint(that.data.latitude, that.data.longitude);
+      console.log(currentLocation)
       // store the check
       new Check({
         timestamp: currentTime,
         checkType: e.detail.value.type,
         location: e.detail.value.name,
         address: e.detail.value.address,
-        user: AV.User.current()
+        user: AV.User.current(),
+        geo: currentLocation
       }).setACL(acl).save().then(wx.navigateTo({
         url: '../history/history'
       })); 

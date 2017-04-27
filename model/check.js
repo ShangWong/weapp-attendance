@@ -36,6 +36,13 @@ class Check extends AV.Object {
         this.set('user', value)
     }
 
+    get geo(){
+        return this.get('geo')
+    }
+    set geo(value){
+        this.set('geo', value)
+    }
+
 }
 
 AV.Object.register(Check, 'Check');
