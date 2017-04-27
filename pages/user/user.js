@@ -45,11 +45,21 @@ Page({
     var usr = this.data.employee;
     var psw = this.data.password;
     AV.User.logIn(usr, psw).then(user => {
-    // 将当前的微信用户与当前登录用户关联
-    
-    user.linkWithWeapp().then(wx.hideLoading());
-    wx.navigateBack({delta: 1})
-    
-  }).catch(console.error);
+      // 将当前的微信用户与当前登录用户关联    
+      user.linkWithWeapp().then(wx.hideLoading());
+      wx.navigateBack({delta: 1})    
+    }, () => {
+      wx.hideLoading();
+      wx.showModal({
+        title: '绑定失败',
+        content: '请检查输入的检查用户名和密码。',
+        showCancel: false,
+        success: function(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          }
+        }
+      })
+    }).catch(console.error);
   }
 })

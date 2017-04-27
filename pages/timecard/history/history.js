@@ -7,17 +7,23 @@ Page({
     checks: null
   },
   onLoad:function(options){
-    // 页面初始化 options为页面跳转所带来的参数    
+    // 页面初始化 options为页面跳转所带来的参数  
+    wx.showNavigationBarLoading();
+  
     if(AV.User.current() == null){
+      wx.hideNavigationBarLoading()
       wx.showModal({
         title: '当前无绑定账户',
-        content: '请绑定账户后，再查看考勤历史',
-        showCancel: false,
-        success: function(res) {
-          if (res.confirm) {
-            wx.navigateBack({
-              delta: 1
+        content: '请绑定账户后，再查看考勤历史',        
+        cancelText: '返回',
+        confirmText: '去绑定',
+        success: function(res){      
+          if(res.confirm) {
+            wx.navigateTo({
+              url: '../../user/user'
             })
+          } else {            
+            wx.navigateBack({delta: 1});
           }
         }
       })      
@@ -27,6 +33,8 @@ Page({
     return AV.Promise.resolve(AV.User.current()).then(user =>
     {
       console.log('uid', user.id);
+      wx.hideNavigationBarLoading()
+
       return new AV.Query(Check)
       // .equalTo('user', AV.Object.createWithoutData('User', user.id))
       .descending('createdAt')
@@ -41,7 +49,7 @@ Page({
         }))
     })
   },
-  onReady:function(){
+  onShow:function(){
     this.fetchChecks();
   }
 })

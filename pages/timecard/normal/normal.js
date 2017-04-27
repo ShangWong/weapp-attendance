@@ -133,7 +133,7 @@ Page({
         checkType: e.detail.value.type,
         location: e.detail.value.name,
         address: e.detail.value.address,
-        // user: AV.User.current()
+        user: AV.User.current()
       }).setACL(acl).save().then(wx.navigateTo({
         url: '../history/history'
       })); 
@@ -142,16 +142,19 @@ Page({
       // 无账户绑定
       wx.showModal({
         title: '当前无绑定账户',
-        content: '请绑定账户后，再进行考勤打卡',
-        showCancel: false,
-        success: function(res) {
-          if (res.confirm) {
-            wx.navigateBack({
-              delta: 1
+        content: '请绑定账户后，再进行考勤打卡',        
+        cancelText: '返回',
+        confirmText: '去绑定',
+        success: function(res){      
+          if(res.confirm) {
+            wx.navigateTo({
+              url: '../../user/user'
             })
+          } else {            
+            wx.navigateBack({delta: 1});
           }
         }
-      })
+      })      
     }
 
   }

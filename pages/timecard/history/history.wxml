@@ -7,8 +7,8 @@
         <image wx:if="{{item.checkType == 'clockIn'}}" src="../../../image/clockIn.png" class="rec-avatar"></image>
         <image wx:if="{{item.checkType == 'clockOut'}}" src="../../../image/clockOut.png" class="rec-avatar"></image>
         <view class="mid">
-        <view class="title">{{item.location}}</view>
-        <view class="discription">{{item.timestamp}}</view>
+        <view class="title">{{item.timestamp}}</view>
+        <view class="discription">{{item.location}}</view>
         <view class="detail">
 
             <!--<text class="vertical">{{item.UsedCount}}</text>-->
