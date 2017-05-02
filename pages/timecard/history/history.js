@@ -49,6 +49,18 @@ Page({
         }))
     })
   },
+  toDetail: function(e){
+    var check = e.currentTarget.dataset.check;
+    var geo = check.geo;
+    console.log('../maps/maps?latitude=' + geo.latitude + '&longitude=' + geo.longitude   )
+    wx.openLocation({
+      latitude: geo.latitude, // 纬度，范围为-90~90，负数表示南纬
+      longitude: geo.longitude, // 经度，范围为-180~180，负数表示西经
+      scale: 28, // 缩放比例
+      name: check.location, // 位置名
+      address: check.address, // 地址的详细说明    
+    })
+  },
   onShow:function(){
     this.fetchChecks();
   }

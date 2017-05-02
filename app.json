@@ -5,7 +5,7 @@
     "pages/user/user",
     "pages/settings/settings",
     "pages/timecard/normal/normal",
-    "pages/timecard/history/history",
+    "pages/timecard/history/history",    
     "pages/overwork/create/create",   
     "pages/sample/index/index"
   ],
