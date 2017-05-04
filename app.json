@@ -7,13 +7,16 @@
     "pages/timecard/normal/normal",
     "pages/timecard/history/history",    
     "pages/overwork/create/create",   
-    "pages/sample/index/index"
+    "pages/sample/index/index",
+    "pages/info/index/index",
+    "pages/info/salary/salary",
+    "pages/info/payment/payment"
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#006df0",
+    "navigationBarTitleText": "COMPANY",
+    "navigationBarTextStyle":"white"
   },
   "tabBar": {
     "color": "#7A7E83",
@@ -26,10 +29,10 @@
       "selectedIconPath": "image/icon_CSR_HL.png",
       "text": "考勤"
     }, {
-      "pagePath": "pages/sample/index/index",
+      "pagePath": "pages/info/index/index",
       "iconPath": "image/icon_CWS.png",
       "selectedIconPath": "image/icon_CWS_HL.png",
-      "text": "申请"
+      "text": "信息"
     }, {
       "pagePath": "pages/settings/settings",
       "iconPath": "image/icon_settings.png",

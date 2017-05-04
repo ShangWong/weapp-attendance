@@ -1,5 +1,40 @@
 @import "../../common/lib/weui.wxss";
 
+page,
+.page,
+.page__bd{
+    height: 100%;
+}
+.page__bd{
+    padding-bottom: 0;
+}
+.weui-tab__content{
+    padding-top: 60px;
+    text-align: center;
+}
+
+.weui-navbar__slider {
+    background-color:#fff !important;
+}
+
+.weui-navbar__item {
+    color: lightgrey;
+}
+
+.weui-navbar__item.weui-bar__item_on {
+    color: white;
+}
+
+.weui-navbar {
+    border-bottom:1rpx solid;
+    background-color: #006df0;
+}
+
+.weui-tab__content {
+    padding-top: 0 !important;
+}
+
+
 .weui-panel {
   background-color: #FFFFFF;
   margin-top: 10px;
@@ -46,4 +81,3 @@
   color: #E5E5E5;
   left: 15px;
 }
-

@@ -17,19 +17,19 @@ Page({
         open: false,        
         pages: [
           {path: "normal", title: ["正常出勤", "Normal Checkin", '通常出勤']},
-          {path: "history", title: ["打卡历史", "Check History", "打刻履歴"]}
+          {path: "history", title: ["打卡记录", "Check History", "打刻履歴"]}
           ]
       }, {
         id: 'overwork',
-        name: ['加班记录', 'Overwork Record', "残業申請"],
+        name: ['各类申请', 'Application', "各種申請"],
         open: false,        
         pages: [
-          {path: "create", title: ["新建加班记录", "Create new record", "新規"]},
-          {path: "list", title: ["查看加班记录", "Check record list", "開発中"]}
+          {path: "create", title: ["加班申请", "Apply Overwork", "残業申請"]},
+          {path: "list", title: ["休假申请", "Apply vacation", "休暇申請"]}
           ]
       }, {
         id: 'sample',
-        name: ['示例菜单', 'Sample Menu', "サンプルメニュー"],
+        name: ['申请审批', 'Improvement', "申請承認"],
         open: false,        
         pages: [
           {path: "index", title: ["子菜单", "Sub-menu", "サブメニュー"]}
