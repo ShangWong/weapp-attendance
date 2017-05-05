@@ -33,10 +33,11 @@ Page({
     return AV.Promise.resolve(AV.User.current()).then(user =>
     {
       console.log('uid', user.id);
+      console.log(AV.Object.createWithoutData('User', user.id));
       wx.hideNavigationBarLoading()
 
       return new AV.Query(Check)
-      // .equalTo('user', AV.Object.createWithoutData('User', user.id))
+      .equalTo('user', AV.Object.createWithoutData('User', user.id))
       .descending('createdAt')
       .find().then(this.setChecks)  
     });
