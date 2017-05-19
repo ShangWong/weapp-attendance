@@ -15,7 +15,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#006df0",
-    "navigationBarTitleText": "COMPANY",
+    "navigationBarTitleText": "Demo",
     "navigationBarTextStyle":"white"
   },
   "tabBar": {
