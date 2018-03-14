@@ -8,7 +8,7 @@ Page({
       {name:'分析', path: "salary", icon: "presentation.png"}, 
       {name:'KPI', path: "salary", icon: "graph.png"}, 
       {name:'门禁', path: "salary", icon: "credit-card.png"}, 
-      {name:'密码', path: "salary", icon: "check.png"}]
+      {name:'密码', path: "auth", icon: "check.png"}]
   },
   onLoad:function(options){
   },

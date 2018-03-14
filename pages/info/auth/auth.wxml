@@ -1,0 +1,7 @@
+<!--pages/info/auth/auth.wxml-->
+<view class="btn-area">
+  <view class="body-view">
+    <text>此页面需通过生物验证进行访问</text>
+    <button bindtap="auth">再次验证</button>
+  </view>
+</view>
